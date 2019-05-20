@@ -8,8 +8,18 @@
 
 html {
     background-color: $white;
-
+    height: 100%;
     font-family: "Open Sans";
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div#wrapper {
+    flex: 1 0 auto;
 }
 
 header {
@@ -25,12 +35,24 @@ header {
 }
 
 footer {
+    display: flex;
+    flex-shrink: 0;
+
     font-size: 12px;
     background-color: $accent;
-    padding: 2px 5px;
+    padding: 5px 10px;
 
     a {
         color: $white;
+        flex-grow: 1;
+    }
+
+    .social {
+        flex-grow: 0;
+        flex-shrink: 1;
+        display: flex;
+        justify-content: space-between;
+        min-width: 50px;
     }
 }
 
@@ -43,3 +65,4 @@ p {
     font-size: 18px;
     line-height: 2;
 }
+
