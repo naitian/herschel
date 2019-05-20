@@ -1,0 +1,104 @@
+@import '../colors';
+@import '../mixins';
+@import '../components/magazine';
+
+.jumbotron {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 400px;
+    overflow: hidden;
+
+    h1 {
+        width: 30vw;
+        height: fit-content;
+        color: $dark-accent;
+        font-size: 3rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .magazines {
+        width: 50vw;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        .col {
+            width: fit-content;
+            .magazine {
+                margin: 20px 0;
+            }
+        }
+        .col-1 {
+            margin-top: -140px;
+        }
+        .col-2 {
+            margin-top: -30px;
+        }
+        @media only screen and (max-width: 1070px) {
+            .col:last-child {
+                display: none;
+            }
+        }
+
+    }
+}
+
+.intro-container {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+
+    padding: 50px 20px;
+
+    box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.1);
+
+    .intro {
+        width: 100%;
+        max-width: 1000px;
+        display: flex;
+        justify-content: space-around;
+        .images, .text {
+            width: 40vw;
+            max-width: 400px;
+        }
+        .images {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .image {
+                border-radius: 20px;
+                width: 80%;
+                @include shadow;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .jumbotron {
+        .magazines {
+            opacity: 0.3;
+            width: 80vw;
+        }
+        h1 {
+            width: 10vw;
+        }
+    }
+    .intro-container {
+        .intro {
+            flex-direction: column-reverse;
+            align-items: center;
+            .images, .text {
+                width: 100%;
+            }
+        }
+    }
+}
+

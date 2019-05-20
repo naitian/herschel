@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'main' %}
+{% endblock css %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="magazines">
+        <div class="col col-1">
+            {% for magazine in magazines|slice:":3" %}
+            {% include "components/magazine.html" with magazine=magazine %}
+            {% endfor %}
+        </div>
+        <div class="col col-2">
+            {% for magazine in magazines|slice:"3:5" %}
+            {% include "components/magazine.html" with magazine=magazine %}
+            {% endfor %}
+        </div>
+        <div class="col col-1">
+            {% for magazine in magazines|slice:"5:" %}
+            {% include "components/magazine.html" with magazine=magazine %}
+            {% endfor %}
+        </div>
+    </div>
+    <h1>Blueprint <br/>
+        Literary <br/>
+        Magazine
+    </h1>
+</div>
+<div class="intro-container">
+    <div class="intro">
+        <div class="images">
+            <img class="image" style="transform: rotate(-5deg)" src="/static/img/group_pic_home.jpg" alt=""/>
+            <img class="image" style="transform: rotate(8deg)" src="/static/img/mags_pic_home.jpg" alt=""/>
+        </div>
+        <div class="text">
+            <h1>what is blueprint?</h1>
+            <p>
+            Blueprint Literary Magazine is a student-produced literary magazine
+            based in the University of Michigan's North Campus. It was founded in
+            2010 when a group of like-minded students from across the College of
+            Engineering recognized the need for a medium through which students and
+            faculty of the College could showcase their creativity in
+            non-engineering subjects.
+            </p>
+            <p>
+            Since then, Blueprint has expanding on this founding principle to
+            accept submissions from all memebers of the university community who
+            are interested in supporting our mission of artistic diversity and
+            creative expression, including students, faculty, and staff.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

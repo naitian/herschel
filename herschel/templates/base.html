@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'head.html' %}
+        {% block css %}
+        {% endblock css %}
+        {% block js %}
+        {% endblock js %}
+    </head>
+    <title>Blueprint Literary Magazine</title>
+    <body>
+        {% include "header.html" %}
+        <div id="wrapper">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+            <a href="/login/">herschel login</a>
+        </footer>
+    </body>
+</html>

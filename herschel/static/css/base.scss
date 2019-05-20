@@ -1,0 +1,45 @@
+@import 'colors';
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,700i,800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: $white;
+
+    font-family: "Open Sans";
+}
+
+header {
+    .top-bar {
+        width: 100vw;
+        height: 6px;
+        top: 0;
+        position: fixed;
+
+        background-color: $accent;
+        @include shadow;
+    }
+}
+
+footer {
+    font-size: 12px;
+    background-color: $accent;
+    padding: 2px 5px;
+
+    a {
+        color: $white;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $dark-accent;
+}
+
+p {
+    color: $black;
+    font-size: 18px;
+    line-height: 2;
+}
