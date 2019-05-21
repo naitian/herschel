@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from .apps.main.views import IndexView, AboutView
+from .apps.main.views import IndexView, AboutView, GalleryView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('join/', AboutView.as_view(), name='join'),
+    path('gallery/', GalleryView.as_view(), name='gallery'),
     re_path('^$', IndexView.as_view(), name='index'),
 ]

@@ -25,11 +25,12 @@ div#wrapper {
 
     .content.static {
         width: 80vw;
+        padding-top: 40px;
         max-width: 600px;
         display: flex;
         flex-direction: column;
 
-        img {
+        img.image {
             width: 70%;
             border-radius: 20px;
             margin: 1.7rem;

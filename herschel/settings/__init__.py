@@ -147,7 +147,13 @@ PIPELINE = {
                 'css/main/main.scss',
             },
             'output_filename': 'css/main.css'
-        }
+        },
+        'gallery': {
+            'source_filenames': {
+                'css/main/gallery.scss',
+            },
+            'output_filename': 'css/gallery.css'
+        },
     },
     'JAVASCRIPT': {
         'base': {

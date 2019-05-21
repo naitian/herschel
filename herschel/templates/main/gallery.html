@@ -1,0 +1,19 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'gallery' %}
+{% endblock css %}
+
+{% block content %}
+<h1>gallery of past issues</h1>
+<p>
+Blueprint has changed a lot over the years. Take a look at our past and get inspired!
+</p>
+
+<div class="magazines">
+    {% for magazine in magazines %}
+    {% include "components/magazine.html" with magazine=magazine %}
+    {% endfor %}
+</div>
+{% endblock content %}
