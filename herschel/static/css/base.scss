@@ -20,17 +20,82 @@ body {
 
 div#wrapper {
     flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+
+    .content.static {
+        width: 80vw;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            width: 70%;
+            border-radius: 20px;
+            margin: 1.7rem;
+            align-self: center;
+            @include shadow;
+        }
+
+    }
 }
 
 header {
+    top: 0;
+    position: fixed;
+    z-index: 100;
     .top-bar {
         width: 100vw;
         height: 6px;
-        top: 0;
-        position: fixed;
+        z-index: 100;
 
         background-color: $accent;
         @include shadow;
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: -1;
+        nav {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 100%;
+            transform: translateX(120%);
+            transition: transform 0.2s ease-in-out;
+            background-color: #00004A;
+
+            &.active {
+                transform: none;
+            }
+
+            a {
+                color: $white;
+                font-weight: bold;
+                margin: 0 10px;
+            }
+        }
+        .nav-btn {
+            color: $white;
+            background-color: $accent;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            z-index: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 }
 
@@ -66,3 +131,22 @@ p {
     line-height: 2;
 }
 
+.button {
+    font-weight: bold;
+    text-decoration: none;
+    width: fit-content;
+    padding: 10px 7px;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
+    &:hover {
+        transform: translateY(-1px);
+        @include shadow-hover;
+    }
+
+    &.primary {
+        background-color: $accent;
+        color: $white;
+        @include shadow;
+    }
+}

@@ -1,10 +1,19 @@
 {# comment #}
 <header>
     <div class="top-bar"></div>
-    <nav>
-    {% if herschel_nav %}
-    {% elif nonav %}
-    {% else %}
-    {% endif %}
-    </nav>
+    <div class="nav-container">
+        <nav>
+            {% if herschel_nav %}
+            {% elif nonav %}
+            {% else %}
+            <a href="{% url 'index' %}">home</a>
+            <a href="{% url 'join' %}">get involved</a>
+            <a href="#">past issues</a>
+            <a href="#">submit</a>
+            {% endif %}
+        </nav>
+        <div class="nav-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
 </header>

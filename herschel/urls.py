@@ -20,6 +20,6 @@ from .apps.main.views import IndexView, AboutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/', AboutView.as_view()),
-    re_path('^$', IndexView.as_view()),
+    path('join/', AboutView.as_view(), name='join'),
+    re_path('^$', IndexView.as_view(), name='index'),
 ]

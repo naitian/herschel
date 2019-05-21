@@ -149,6 +149,14 @@ PIPELINE = {
             'output_filename': 'css/main.css'
         }
     },
+    'JAVASCRIPT': {
+        'base': {
+            'source_filenames': (
+                'js/base.js',
+            ),
+            'output_filename': 'js/base.js'
+        }
+    }
 }
 
 PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.yuglify.YuglifyCompressor'
