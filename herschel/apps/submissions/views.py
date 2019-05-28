@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-
+from .utils import send_email
 from .models import Artist
 from .forms import ArtistForm, SubmissionForm
 
@@ -24,7 +24,12 @@ def submission_page(request):
             submission = submission_form.save(commit=False)
             submission.artist = artist
             submission.save()
-            return render(request, 'submissions/accept.html')
+            send_email('emails/received_submission.txt',
+                       'emails/received_submission.html',
+                       {'artist': artist, 'submission': submission},
+                       'Thanks for Submitting to BLM!',
+                       [artist.email])
+            return render(request, 'submissions/received.html')
     else:
         submission_form = SubmissionForm()
         artist_form = ArtistForm()

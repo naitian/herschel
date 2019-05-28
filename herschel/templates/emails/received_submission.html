@@ -1,0 +1,14 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+Dear {{ artist.first_name }},
+
+Thank you for submitting your piece, <em>{{ submission.title }}</em>, to Blueprint Literary Magazine!
+
+We look forward to reviewing your work. If you have any questions or concerns,
+please do not reply to this email. Instead, email <a href="mailto:submissions@blueprintlm.com">submissions@blueprintlm.com</a>.
+
+Best,
+The Blueprint Staff
+{% endblock content %}
+

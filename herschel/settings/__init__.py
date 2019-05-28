@@ -133,6 +133,7 @@ MEDIA_URL = '/uploads/'
 
 
 # Email
+EMAIL_FROM = 'noreply@blueprintlm.com'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
