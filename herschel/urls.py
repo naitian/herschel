@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from .apps.main.views import IndexView, AboutView, GalleryView
+from .apps.submissions.views import submission_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('join/', AboutView.as_view(), name='join'),
     path('gallery/', GalleryView.as_view(), name='gallery'),
+    path('submit/', submission_page, name='submit'),
     re_path('^$', IndexView.as_view(), name='index'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

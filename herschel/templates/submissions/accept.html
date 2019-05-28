@@ -1,0 +1,17 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'base' %}
+{% stylesheet 'form' %}
+{% stylesheet 'submit' %}
+{% endblock css %}
+
+{% block content %}
+<h1>thanks for submitting!</h1>
+
+<p>You should receive an email confirming your submission soon.</p>
+<a href="{% url 'submit' %}" class="primary button">Submit Another</a>
+{% endblock content %}
+
+

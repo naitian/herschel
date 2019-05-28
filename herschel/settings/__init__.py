@@ -24,7 +24,10 @@ ROOT_PATH = '/'
 SECRET_KEY = 'cg&%)5&wi_w7b$_)tyx4zs_p667trtf3(n6xo%jbwqj)@jd8g7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# for production, set DEBUG=FALSE AND PRODUCTION=TRUE
+DEBUG = os.getenv('DEBUG', True)
+PRODUCTION = os.getenv('PRODUCTION', False)
+DEBUG = DEBUG or not PRODUCTION
 
 ALLOWED_HOSTS = []
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'pipeline',
     'herschel.apps.main',
+    'herschel.apps.submissions',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +81,16 @@ WSGI_APPLICATION = 'herschel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    # TODO: use postgres in prod
+    pass
 
 
 # Password validation
@@ -116,6 +124,21 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Uploaded Files
+
+MEDIA_ROOT = './uploads'
+MEDIA_URL = '/uploads/'
+
+
+# Email
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    # TODO: Use Amazon SES
+    # https://github.com/django-ses/django-ses
+    pass
 
 
 # Static files (CSS, JavaScript, Images)
@@ -153,6 +176,18 @@ PIPELINE = {
                 'css/main/gallery.scss',
             },
             'output_filename': 'css/gallery.css'
+        },
+        'form': {
+            'source_filenames': {
+                'css/form.scss',
+            },
+            'output_filename': 'css/form.css'
+        },
+        'submit': {
+            'source_filenames': {
+                'css/submissions/submit.scss',
+            },
+            'output_filename': 'css/submit.css'
         },
     },
     'JAVASCRIPT': {

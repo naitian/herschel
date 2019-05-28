@@ -150,4 +150,8 @@ p {
         color: $white;
         @include shadow;
     }
+
+    &.big {
+        padding: 20px 14px;
+    }
 }

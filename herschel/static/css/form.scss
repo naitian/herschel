@@ -1,0 +1,38 @@
+@import 'colors';
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-left: 5px solid $accent;
+    padding-left: 20px;
+    color: $dark-accent;
+
+    h2 {
+        margin-top: 0;
+    }
+
+    legend {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
+
+label {
+    text-transform: lowercase;
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0.6;
+    margin: 0.5rem 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    border: 1px solid $accent;
+    border-radius: 5px;
+    background: $true-white;
+    padding: 5px;
+    max-width: 240px;
+}

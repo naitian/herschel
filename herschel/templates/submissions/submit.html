@@ -1,0 +1,25 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'form' %}
+{% stylesheet 'submit' %}
+{% endblock css %}
+
+{% block content %}
+<h1>submit your art</h1>
+<form action="" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+    {% csrf_token %}
+    <div class="fieldset artist">
+        <h2>tell us a little about you</h2>
+        {{ artist_form }}
+    </div>
+    <div class="fieldset submission">
+        <h2>tell us about your art</h2>
+        {{ submission_form }}
+    </div>
+
+    <input type="submit" value="submit" class="big primary button" />
+</form>
+{% endblock content %}
+

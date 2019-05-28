@@ -4,6 +4,7 @@ node_modules/
 # Django
 db.sqlite3
 collected_static/
+uploads/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -14,7 +15,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.Python
+.Pythonmedia
 build/
 develop-eggs/
 dist/
