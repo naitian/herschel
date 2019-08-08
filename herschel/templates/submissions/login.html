@@ -1,0 +1,26 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'form' %}
+{% stylesheet 'login' %}
+{% endblock css %}
+
+{% block content %}
+<h1>sign in to herschel</h1>
+<form action="" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+    <div class="fieldset">
+        {% csrf_token %}
+        {% if error %}
+        <span class="error-text"> <i class='fas fa-exclamation-circle'></i> {{ error }}</span>
+        {% endif %}
+        <label for="username">username</label>
+        <input type="text" value="" name="username"/>
+        <label for="password">password</label>
+        <input type="password" name="password">
+        <input type="submit" value="go" class="login primary button big" />
+    </div>
+</form>
+{% endblock content %}
+
+

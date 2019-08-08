@@ -19,13 +19,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .apps.main.views import IndexView, AboutView, GalleryView
-from .apps.submissions.views import submission_page
+from .apps.submissions.views import submission_page, login_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('join/', AboutView.as_view(), name='join'),
     path('gallery/', GalleryView.as_view(), name='gallery'),
     path('submit/', submission_page, name='submit'),
+    path('login/', login_view, name='login'),
     re_path('^$', IndexView.as_view(), name='index'),
 ]
 

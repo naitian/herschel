@@ -14,19 +14,19 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT_PATH = '/'
+ROOT_PATH = "/"
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cg&%)5&wi_w7b$_)tyx4zs_p667trtf3(n6xo%jbwqj)@jd8g7'
+SECRET_KEY = "cg&%)5&wi_w7b$_)tyx4zs_p667trtf3(n6xo%jbwqj)@jd8g7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # for production, set DEBUG=FALSE AND PRODUCTION=TRUE
-DEBUG = os.getenv('DEBUG', True)
-PRODUCTION = os.getenv('PRODUCTION', False)
+DEBUG = os.getenv("DEBUG", True)
+PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = DEBUG or not PRODUCTION
 
 ALLOWED_HOSTS = []
@@ -35,47 +35,48 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_extensions',
-    'pipeline',
-    'herschel.apps.main',
-    'herschel.apps.submissions',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_extensions",
+    "pipeline",
+    "herschel.apps.main",
+    "herschel.apps.submissions",
+    "herschel.apps.staff",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'herschel.urls'
+ROOT_URLCONF = "herschel.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ]
         },
-    },
+    }
 ]
 
-WSGI_APPLICATION = 'herschel.wsgi.application'
+WSGI_APPLICATION = "herschel.wsgi.application"
 
 
 # Database
@@ -83,9 +84,9 @@ WSGI_APPLICATION = 'herschel.wsgi.application'
 
 if DEBUG:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 else:
@@ -98,26 +99,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -128,84 +123,81 @@ USE_TZ = True
 
 # Uploaded Files
 
-MEDIA_ROOT = './uploads'
-MEDIA_URL = '/uploads/'
+MEDIA_ROOT = "./uploads"
+MEDIA_URL = "/uploads/"
 
 
 # Email
-EMAIL_FROM = 'noreply@blueprintlm.com'
+EMAIL_FROM = "noreply@blueprintlm.com"
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 else:
     # TODO: Use Amazon SES
     # https://github.com/django-ses/django-ses
     pass
 
 
+# Google Drive
+GOOGLE_DRIVE_CREDENTIALS_PATH = os.path.join(BASE_DIR, "service_account.json")
+GOOGLE_DRIVE_TEAM_DRIVE_ID = "0AI0oPd7S5vpnUk9PVA"
+GOOGLE_DRIVE_FOLDER_IDS = {
+    "submissions": "1k-cj8xRIaL_zriANFVbtTU8CHqnhj1lT",
+    "PROSE": "1tUiY0KSIUKbhBPti_oyNcxSeUL3_LPK8",
+    "POETRY": "1yl4PFwF2OVYcueKf2YKHyFa_szWeSh1e",
+    "PHOTO": "1w77d4YnA1VmRdihaILzSGM0MqljCcOZZ",
+    "VIS": "17LkbzUN5-wu-Fb0roKxAcIkgp2d0_Znz",
+    "OTHER": "1Vxx7o5YcjHlDbOMJXVuEnDvxj8mj0GzJ",
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATICFILES_STORAGE = "pipeline.storage.PipelineCachedStorage"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "pipeline.finders.PipelineFinder",
 )
 
 PIPELINE = {
-    'STYLESHEETS': {
-        'base': {
-            'source_filenames': (
-                'css/vendor/normalize.css',
-                'css/base.scss',
-            ),
-            'output_filename': 'css/base.css'
+    "STYLESHEETS": {
+        "base": {
+            "source_filenames": ("css/vendor/normalize.css", "css/base.scss"),
+            "output_filename": "css/base.css",
         },
-        'main': {
-            'source_filenames': {
-                'css/main/main.scss',
-            },
-            'output_filename': 'css/main.css'
+        "main": {
+            "source_filenames": {"css/main/main.scss"},
+            "output_filename": "css/main.css",
         },
-        'gallery': {
-            'source_filenames': {
-                'css/main/gallery.scss',
-            },
-            'output_filename': 'css/gallery.css'
+        "gallery": {
+            "source_filenames": {"css/main/gallery.scss"},
+            "output_filename": "css/gallery.css",
         },
-        'form': {
-            'source_filenames': {
-                'css/form.scss',
-            },
-            'output_filename': 'css/form.css'
+        "form": {
+            "source_filenames": {"css/form.scss"},
+            "output_filename": "css/form.css",
         },
-        'submit': {
-            'source_filenames': {
-                'css/submissions/submit.scss',
-            },
-            'output_filename': 'css/submit.css'
+        "submit": {
+            "source_filenames": {"css/submissions/submit.scss"},
+            "output_filename": "css/submit.css",
+        },
+        "login": {
+            "source_filenames": {"css/submissions/login.scss"},
+            "output_filename": "css/login.css",
         },
     },
-    'JAVASCRIPT': {
-        'base': {
-            'source_filenames': (
-                'js/base.js',
-            ),
-            'output_filename': 'js/base.js'
-        }
-    }
+    "JAVASCRIPT": {
+        "base": {"source_filenames": ("js/base.js",), "output_filename": "js/base.js"}
+    },
 }
 
-PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.yuglify.YuglifyCompressor'
-PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.yuglify.YuglifyCompressor'
-PIPELINE['COMPILERS'] = (
-    'pipeline.compilers.sass.SASSCompiler',
-)
+PIPELINE["CSS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
+PIPELINE["JS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
+PIPELINE["COMPILERS"] = ("pipeline.compilers.sass.SASSCompiler",)
 
-if os.getenv('SASS_BINARY'):
-    PIPELINE['SASS_BINARY'] = os.getenv('SASS_BINARY')
+if os.getenv("SASS_BINARY"):
+    PIPELINE["SASS_BINARY"] = os.getenv("SASS_BINARY")
