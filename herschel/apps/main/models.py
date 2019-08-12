@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Magazine(models.Model):
-
     """Docstring for Magazine. """
     title = models.CharField(max_length=50)
     issue = models.IntegerField()

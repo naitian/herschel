@@ -25,7 +25,7 @@ div#wrapper {
 
     .content.static {
         width: 80vw;
-        padding-top: 40px;
+        padding-top: 60px;
         max-width: 600px;
         display: flex;
         flex-direction: column;
@@ -37,7 +37,6 @@ div#wrapper {
             align-self: center;
             @include shadow;
         }
-
     }
 }
 

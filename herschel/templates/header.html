@@ -4,9 +4,9 @@
     <div class="nav-container">
         <nav>
             {% if request.user.is_authenticated %}
-            <a href="{% url 'index' %}">dashboard</a>
+            <a href="{% url 'dashboard' %}">dashboard</a>
             <a href="{% url 'index' %}">spreads</a>
-            <a href=" {% url 'index' %} ">submissions</a>
+            <a href=" {% url 'submissions_index' %} ">submissions</a>
             <a href="{% url 'index' %}">emails</a>
             {% elif nonav %}
             {% else %}

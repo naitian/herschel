@@ -1,0 +1,53 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'staff' %}
+{% endblock css %}
+
+{% block content %}
+<h1>submissions list</h1>
+<p>
+You've reviewed {{ num_reviews }} of {{ total_reviews }} submissions.
+{{ message }}
+</p>
+<div class="submissions">
+    <div class="submissions__list">
+        <h2>to-do:</h2>
+        <ul>
+        {% for submission in todo %}
+        <li>
+            <a href="{{ submission.get_absolute_url }}" class="submissions__list_item">
+                <span class="title">{{ submission.title }}</span>
+                <span class="meta">
+                    <span class="review-count">{{ submission.review_set.count }} reviews</span> |
+                    <span class="category">{{ submission.category }}</span>
+                </span>
+            </a>
+        </li>
+        {% empty %}
+            All done with your reviews!
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="submissions__list">
+        <h2>done:</h2>
+        <ul>
+        {% for submission in reviewed %}
+        <li>
+            <a href="{{ submission.get_absolute_url }}" class="submissions__list_item">
+                <span class="title">{{ submission.title }}</span>
+                <span class="meta">
+                    <span class="review-count">{{ submission.review_set.count }} reviews</span> |
+                    <span class="category">{{ submission.category }}</span>
+                </span>
+            </a>
+        </li>
+        {% empty %}
+            No reviews yet. Time to get started!
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
+

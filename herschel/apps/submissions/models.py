@@ -3,6 +3,7 @@ import os.path
 
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 from ._drive_utils import authenticate, upload_to_team_drive
 
@@ -93,6 +94,9 @@ class Submission(models.Model):
         self.drive_id = upload_to_team_drive(service, metadata, self.attachment.path)
         self.drive_url = "https://drive.google.com/file/d/{}/view".format(self.drive_id)
         self.save(update_fields=['drive_id', 'drive_url'])
+
+    def get_absolute_url(self):
+        return reverse('submission_detail', args=[str(self.id)])
 
     def __str__(self):
         return '"{}" by {}'.format(self.title, self.artist)

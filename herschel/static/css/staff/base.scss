@@ -1,0 +1,65 @@
+@import '../colors';
+@import '../mixins';
+
+.submissions__list ul {
+    list-style: none;
+
+    .submissions__list_item {
+        cursor: pointer;
+        width: 100%;
+        background-color: $blue0;
+        color: $dark-accent;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid $accent;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+
+        .title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .meta {
+            font-size: 0.8rem;
+            line-height: 1.6rem; // This vertically aligns the text
+            text-transform: lowercase;
+            opacity: 0.7;
+        }
+
+        &:hover, &:focus {
+            .title {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.submission-title {
+    .submission-title__author {
+        font-weight: normal;
+    }
+}
+
+.drive-embed {
+    height: 80vh;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    @include shadow;
+}
+
+.information {
+    @include box;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        input[type="submit"] {
+            width: 100%;
+        }
+    }
+}

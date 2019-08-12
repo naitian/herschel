@@ -1,0 +1,11 @@
+{% extends 'static_page.html' %}
+{% load pipeline %}
+
+{% block css %}
+{% stylesheet 'staff' %}
+{% endblock css %}
+
+{% block content %}
+<h1>Hello, {{ request.user.first_name }}!</h1>
+<p>Hope you're having a great day.</p>
+{% endblock content %}

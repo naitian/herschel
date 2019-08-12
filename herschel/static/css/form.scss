@@ -29,6 +29,8 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="number"],
+textarea,
 select {
     border: 1px solid $accent;
     border-radius: 5px;

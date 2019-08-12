@@ -106,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+LOGIN_URL = "/login/"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -168,6 +170,10 @@ PIPELINE = {
         "base": {
             "source_filenames": ("css/vendor/normalize.css", "css/base.scss"),
             "output_filename": "css/base.css",
+        },
+        "staff": {
+            "source_filenames": ("css/staff/base.scss",),
+            "output_filename": "css/staff.css",
         },
         "main": {
             "source_filenames": {"css/main/main.scss"},
