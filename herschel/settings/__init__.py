@@ -29,7 +29,13 @@ DEBUG = os.getenv("DEBUG", True)
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = DEBUG or not PRODUCTION
 
-ALLOWED_HOSTS = []
+if PRODUCTION:
+    print("Using prod settings: PRODUCTION={}, DEBUG={}".format(PRODUCTION, DEBUG))
+
+if DEBUG:
+    print("Using debug settings: PRODUCTION={}, DEBUG={}".format(PRODUCTION, DEBUG))
+
+ALLOWED_HOSTS = ["herschel-dev.us-east-2.elasticbeanstalk.com"]
 
 
 # Application definition
@@ -90,9 +96,16 @@ if DEBUG:
         }
     }
 else:
-    # TODO: use postgres in prod
-    pass
-
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "HOST": "localhost",
+            "NAME": "herschel",
+            "USER": "herschel",
+            "PASSWORD": os.environ.get("DB_PASSWORD", ""),
+            "PORT": 5432,
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -207,3 +220,6 @@ PIPELINE["COMPILERS"] = ("pipeline.compilers.sass.SASSCompiler",)
 
 if os.getenv("SASS_BINARY"):
     PIPELINE["SASS_BINARY"] = os.getenv("SASS_BINARY")
+
+if PRODUCTION:
+    from .production import *
