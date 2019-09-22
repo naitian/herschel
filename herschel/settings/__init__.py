@@ -25,8 +25,8 @@ SECRET_KEY = "cg&%)5&wi_w7b$_)tyx4zs_p667trtf3(n6xo%jbwqj)@jd8g7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # for production, set DEBUG=FALSE AND PRODUCTION=TRUE
-DEBUG = os.getenv("DEBUG", True)
-PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = os.getenv("DEBUG", "TRUE") == "TRUE"
+PRODUCTION = os.getenv("PRODUCTION", "FALSE") == "TRUE"
 DEBUG = DEBUG or not PRODUCTION
 
 if PRODUCTION:
