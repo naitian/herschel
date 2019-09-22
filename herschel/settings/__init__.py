@@ -35,7 +35,7 @@ if PRODUCTION:
 if DEBUG:
     print("Using debug settings: PRODUCTION={}, DEBUG={}".format(PRODUCTION, DEBUG))
 
-ALLOWED_HOSTS = ["herschel-dev.us-east-2.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
