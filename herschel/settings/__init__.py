@@ -149,11 +149,33 @@ if DEBUG:
 else:
     # TODO: Use Amazon SES
     # https://github.com/django-ses/django-ses
-    pass
+    EMAIL_BACKEND = 'django_ses.SESBackend'
 
+# Logging
+if not DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+           'file': {
+               'level': 'DEBUG',
+               'class': 'logging.FileHandler',
+               'filename': 'log.django',
+           },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console','file'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            },
+        },
+    }
 
 # Google Drive
-GOOGLE_DRIVE_CREDENTIALS_PATH = os.path.join(BASE_DIR, "service_account.json")
+GOOGLE_DRIVE_CREDENTIALS_PATH = os.path.join(BASE_DIR, "settings/service_account.json")
 GOOGLE_DRIVE_TEAM_DRIVE_ID = "0AI0oPd7S5vpnUk9PVA"
 GOOGLE_DRIVE_FOLDER_IDS = {
     "submissions": "1k-cj8xRIaL_zriANFVbtTU8CHqnhj1lT",
