@@ -85,7 +85,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect("index")
+            return redirect("dashboard")
         # Return an 'invalid login' error message.
         return render(request, "submissions/login.html", {"error": "Invalid Login"})
     return render(request, "submissions/login.html")
