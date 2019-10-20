@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 
 from .forms import ReviewForm
 from .models import Review
@@ -72,3 +73,24 @@ def submission_details(request, submission_id):
             "review_form": review_form,
         },
     )
+
+
+def login_view(request):
+    """ Login view
+    """
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return redirect("index")
+        # Return an 'invalid login' error message.
+        return render(request, "submissions/login.html", {"error": "Invalid Login"})
+    return render(request, "submissions/login.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("index")

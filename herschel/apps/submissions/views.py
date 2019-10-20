@@ -1,7 +1,6 @@
 """Submissions application views"""
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -47,19 +46,3 @@ def submission_page(request):
         "submissions/submit.html",
         {"artist_form": artist_form, "submission_form": submission_form},
     )
-
-
-def login_view(request):
-    """ Login view
-    """
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page.
-            return redirect("index")
-        # Return an 'invalid login' error message.
-        return render(request, "submissions/login.html", {"error": "Invalid Login"})
-    return render(request, "submissions/login.html")

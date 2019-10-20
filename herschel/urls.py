@@ -19,7 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .apps.main.views import IndexView, AboutView, GalleryView
-from .apps.submissions.views import submission_page, login_view
+from .apps.submissions.views import submission_page
+from .apps.staff.views import login_view, logout_view
+
 from .apps.staff import urls as staff_urlconf
 
 urlpatterns = [
@@ -29,6 +31,7 @@ urlpatterns = [
     path('gallery/', GalleryView.as_view(), name='gallery'),
     path('submit/', submission_page, name='submit'),
     path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     re_path('^$', IndexView.as_view(), name='index'),
 ]
 
