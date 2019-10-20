@@ -4,6 +4,8 @@ node_modules/
 # Django
 db.sqlite3
 collected_static/
+herschel/settings/production.py
+herschel/settings/*.json
 uploads/
 
 # Byte-compiled / optimized / DLL files
