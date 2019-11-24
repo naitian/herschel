@@ -15,9 +15,10 @@
         {% endif %}
     </span>
 </h1>
-<a href="{{ submission.drive_url }}" target="_blank" class="button primary">
-    View on Google Drive <i class="fas fa-external-link-square-alt"></i>
-</a>
+<a href="{% url 'submissions_index' %}" class="button primary">Back to submissions</a>
+<!-- <a href="{{ submission.drive_url }}" target="_blank" class="button primary"> -->
+<!--     View on Google Drive <i class="fas fa-external-link-square-alt"></i> -->
+<!-- </a> -->
 <div class="information">
     <div class="information__rating">
         {% if review %}
