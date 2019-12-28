@@ -15,11 +15,13 @@
         {% endif %}
     </span>
 </h1>
-<a href="{% url 'submissions_index' %}" class="button primary">Back to submissions</a>
-<br />
-<a href="{{ submission.drive_url }}" target="_blank" class="button primary">
-    View on Google Drive <i class="fas fa-external-link-square-alt"></i>
-</a>
+<div class="button-group">
+    <a href="{% url 'submissions_index' %}" class="button primary">Back to submissions</a>
+    <a href="{{ submission.drive_url }}" target="_blank" class="button primary">
+        View on Google Drive <i class="fas fa-external-link-square-alt"></i>
+    </a>
+</div>
+</br>
 <div class="information">
     <div class="information__rating">
         {% if review %}
@@ -30,11 +32,9 @@
         <form method="post" accept-charset="utf-8">
             {% csrf_token %}
             {{ review_form }}
-        <input type="submit" value="submit" class="button primary"/>
+            <input type="submit" value="submit" class="button primary"/>
         </form>
     </div>
 </div>
 <iframe class="drive-embed" src="{{ embed_url }}" frameborder="0"></iframe>
 {% endblock content %}
-
-
