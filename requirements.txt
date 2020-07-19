@@ -12,7 +12,7 @@ certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
 colorama==0.3.9
-Django==2.2.4
+Django==2.2.10
 django-extensions==2.1.7
 django-pipeline==1.6.14
 django-ses==0.8.12
@@ -26,7 +26,7 @@ google-api-python-client==1.7.9
 google-auth==1.6.3
 google-auth-httplib2==0.0.3
 google-auth-oauthlib==0.4.0
-httplib2==0.12.3
+httplib2==0.18.0
 idna==2.7
 isort==4.3.20
 jedi==0.14.0
