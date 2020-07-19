@@ -3,6 +3,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
+from constance import config
 from django.conf import settings
 
 SCOPES = ["https://www.googleapis.com/auth/drive"]
@@ -20,12 +21,12 @@ def authenticate():
 
 def get_team_drive_id(service):
     """ Finds team drive ID based on the name """
-    if settings.GOOGLE_DRIVE_TEAM_DRIVE_ID:
-        return settings.GOOGLE_DRIVE_TEAM_DRIVE_ID
+    if config.GOOGLE_DRIVE_TEAM_DRIVE_ID:
+        return config.GOOGLE_DRIVE_TEAM_DRIVE_ID
     results = service.drives().list().execute()
     items = results.get("drives", [])
     for item in items:
-        if item.name == settings.GOOGLE_DRIVE_TEAM_DRIVE_NAME:
+        if item.name == config.GOOGLE_DRIVE_TEAM_DRIVE_NAME:
             return item.id
     return None
 

@@ -8,4 +8,15 @@
 {% block content %}
 <h1>Hello, {{ request.user.first_name }}!</h1>
 <p>Hope you're having a great day.</p>
+
+{% if user.is_staff %}
+
+<h2>Admin Controls</h2>
+<ul>
+    <li><a href={% url 'ratings_csv' %}>Download ratings spreadsheet</a></li>
+    <li><a href={% url 'artists_csv' %}>Download artists spreadsheet</a></li>
+</ul>
+
+
+{% endif %}
 {% endblock content %}

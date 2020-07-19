@@ -1,11 +1,22 @@
 """ Models for submissions application """
 import os.path
 
-from django.db import models
+from constance import config
 from django.conf import settings
+from django.db import models
 from django.urls import reverse
 
 from ._drive_utils import authenticate, upload_to_team_drive
+
+
+GOOGLE_DRIVE_FOLDER_IDS = {
+    "submissions": config.GOOGLE_DRIVE_SUBMISSIONS_FOLDER,
+    "PROSE": config.GOOGLE_DRIVE_PROSE_FOLDER,
+    "POETRY": config.GOOGLE_DRIVE_POETRY_FOLDER,
+    "PHOTO": config.GOOGLE_DRIVE_PHOTO_FOLDER,
+    "VIS": config.GOOGLE_DRIVE_VIS_FOLDER,
+    "OTHER": config.GOOGLE_DRIVE_OTHER_FOLDER,
+}
 
 # Create your models here.
 class Artist(models.Model):
@@ -89,14 +100,14 @@ class Submission(models.Model):
         service = authenticate()
         metadata = {
             "name": os.path.basename(self.attachment.name),
-            "parents": [settings.GOOGLE_DRIVE_FOLDER_IDS[self.category]],
+            "parents": [GOOGLE_DRIVE_FOLDER_IDS[self.category]],
         }
         self.drive_id = upload_to_team_drive(service, metadata, self.attachment.path)
         self.drive_url = "https://drive.google.com/file/d/{}/view".format(self.drive_id)
-        self.save(update_fields=['drive_id', 'drive_url'])
+        self.save(update_fields=["drive_id", "drive_url"])
 
     def get_absolute_url(self):
-        return reverse('submission_detail', args=[str(self.id)])
+        return reverse("submission_detail", args=[str(self.id)])
 
     def __str__(self):
         return '"{}" by {}'.format(self.title, self.artist)

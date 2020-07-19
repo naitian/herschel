@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "pipeline",
+    'constance.backends.database',
+    'constance',
     "herschel.apps.main",
     "herschel.apps.submissions",
     "herschel.apps.staff",
@@ -176,7 +178,7 @@ if not DEBUG:
 
 # Google Drive
 GOOGLE_DRIVE_CREDENTIALS_PATH = os.path.join(BASE_DIR, "settings/service_account.json")
-GOOGLE_DRIVE_TEAM_DRIVE_ID = "0AI0oPd7S5vpnUk9PVA"
+# GOOGLE_DRIVE_TEAM_DRIVE_ID = "0AI0oPd7S5vpnUk9PVA"
 GOOGLE_DRIVE_FOLDER_IDS = {
     "submissions": "1k-cj8xRIaL_zriANFVbtTU8CHqnhj1lT",
     "PROSE": "1tUiY0KSIUKbhBPti_oyNcxSeUL3_LPK8",
@@ -239,6 +241,18 @@ PIPELINE = {
 PIPELINE["CSS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
 PIPELINE["JS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
 PIPELINE["COMPILERS"] = ("pipeline.compilers.sass.SASSCompiler",)
+
+# Constance
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    "GOOGLE_DRIVE_TEAM_DRIVE_ID": ("0AI0oPd7S5vpnUk9PVA", "ID of the Shared Drive"),
+    "GOOGLE_DRIVE_SUBMISSIONS_FOLDER": ("1k-cj8xRIaL_zriANFVbtTU8CHqnhj1lT", "ID of submissions folder"),
+    "GOOGLE_DRIVE_PROSE_FOLDER": ("1tUiY0KSIUKbhBPti_oyNcxSeUL3_LPK8", "ID of Prose folder"),
+    "GOOGLE_DRIVE_POETRY_FOLDER": ("1yl4PFwF2OVYcueKf2YKHyFa_szWeSh1e", "ID of Poetry folder"),
+    "GOOGLE_DRIVE_PHOTO_FOLDER": ("1w77d4YnA1VmRdihaILzSGM0MqljCcOZZ", "ID of Photo folder"),
+    "GOOGLE_DRIVE_VIS_FOLDER": ("17LkbzUN5-wu-Fb0roKxAcIkgp2d0_Znz", "ID of Vis folder"),
+    "GOOGLE_DRIVE_OTHER_FOLDER": ("1Vxx7o5YcjHlDbOMJXVuEnDvxj8mj0GzJ", "ID of Other folder"),
+}
 
 if os.getenv("SASS_BINARY"):
     PIPELINE["SASS_BINARY"] = os.getenv("SASS_BINARY")

@@ -1,10 +1,16 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+import csv
 
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+
+from ..submissions.models import Submission, Artist
 from .forms import ReviewForm
 from .models import Review
-from ..submissions.models import Submission
+
 
 # Create your views here.
 @login_required
@@ -73,6 +79,61 @@ def submission_details(request, submission_id):
             "review_form": review_form,
         },
     )
+
+
+@staff_member_required
+def ratings_csv(request):
+    response = HttpResponse(content_type="text/csv")
+    reviewers = [u.username for u in User.objects.all()]
+    spreadsheet = csv.DictWriter(
+        response, ["title", "type", "artist", "pseudonym", "email"] + reviewers
+    )
+    spreadsheet.writeheader()
+    for s in Submission.objects.all():
+        outdict = {
+            "title": s.title,
+            "type": s.category,
+            "artist": str(s.artist),
+            "pseudonym": s.artist.pseudonym,
+            "drive": s.drive_url,
+            "email": s.artist.email,
+        }
+        for r in s.review_set.all():
+            outdict[r.reviewer.username] = r.rating
+        spreadsheet.writerow(outdict)
+    return response
+
+
+@staff_member_required
+def artists_csv(request):
+    response = HttpResponse(content_type="text/csv")
+    spreadsheet = csv.DictWriter(
+        response,
+        ["first_name", "last_name", "pseudonym", "email", "standing", "major_field"],
+    )
+    spreadsheet.writeheader()
+    for a in Artist.objects.all():
+        outdict = {
+            "first_name": a.first_name,
+            "last_name": a.last_name,
+            "pseudonym": a.pseudonym,
+            "email": a.email,
+            "standing": a.email,
+            "major_field": a.major_field,
+        }
+        spreadsheet.writerow(outdict)
+    return response
+
+
+@login_required
+def emails(request):
+    """ Dashboard for email sending
+
+    :request: TODO
+    :returns: TODO
+
+    """
+    pass
 
 
 def login_view(request):
