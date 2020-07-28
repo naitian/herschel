@@ -86,7 +86,7 @@ def ratings_csv(request):
     response = HttpResponse(content_type="text/csv")
     reviewers = [u.username for u in User.objects.all()]
     spreadsheet = csv.DictWriter(
-        response, ["title", "type", "artist", "pseudonym", "email"] + reviewers
+        response, ["title", "type", "artist", "drive", "pseudonym", "email"] + reviewers
     )
     spreadsheet.writeheader()
     for s in Submission.objects.all():
