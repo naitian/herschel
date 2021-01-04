@@ -34,7 +34,7 @@ def submission_page(request):
                 "emails/received_submission.txt",
                 "emails/received_submission.html",
                 {"artist": artist, "submission": submission},
-                "Thanks for Submitting to BLM!",
+                "Thanks for Submitting to Blueprint!",
                 [artist.email],
             )
             return render(request, "submissions/received.html")
